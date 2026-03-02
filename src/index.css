@@ -285,7 +285,7 @@ section h3 {
 }
 
 .btn-upload {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: linear-gradient(135deg, #63C29E 0%, #81A094 100%);
   color: white;
 }
 
@@ -301,7 +301,7 @@ section h3 {
 }
 
 .btn-danger:hover {
-  background: #ff5252;
+  background: #D15A5F;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
 }
@@ -412,12 +412,12 @@ section h3 {
 }
 
 .comparison-item.warning {
-  border-left-color: #ff9800;
+  border-left-color: #D15A5F;
   background: #fff3e0;
 }
 
 .comparison-item.danger {
-  border-left-color: #f44336;
+  border-left-color: #A30B37;
   background: #ffebee;
 }
 
