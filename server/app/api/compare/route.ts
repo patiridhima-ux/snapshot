@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 
 function isAuthorized(req: NextRequest) {
   const key = req.headers.get('x-api-key');
@@ -19,8 +19,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'baseline_id and after_id are required' }, { status: 400 });
   }
   const [{ data: baselineRow, error: err1 }, { data: afterRow, error: err2 }] = await Promise.all([
-    supabase.from('snapshots').select('data').eq('id', baseline_id).single(),
-    supabase.from('snapshots').select('data').eq('id', after_id).single(),
+    getSupabase().from('snapshots').select('data').eq('id', baseline_id).single(),
+    getSupabase().from('snapshots').select('data').eq('id', after_id).single(),
   ]);
 
   if (err1 || err2 || !baselineRow || !afterRow) {

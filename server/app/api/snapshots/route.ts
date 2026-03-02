@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 
 // Validate API key
 function isAuthorized(req: NextRequest) {
@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const { data: inserted, error } = await supabase
+    const { data: inserted, error } = await getSupabase()
       .from('snapshots')
       .insert({
         machine_id,
@@ -51,7 +51,7 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const machine_id = searchParams.get('machine_id');
 
-  let query = supabase
+  let query = getSupabase()
     .from('snapshots')
     .select('id, machine_id, machine_name, snapshot_name, timestamp')
     .order('timestamp', { ascending: false });

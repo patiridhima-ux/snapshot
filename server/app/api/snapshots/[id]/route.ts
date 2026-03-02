@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabase } from '@/lib/supabase';
 
 function isAuthorized(req: NextRequest) {
   const key = req.headers.get('x-api-key');
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
   const { id } = await params;
 
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from('snapshots')
     .select('*')
     .eq('id', id)
@@ -33,7 +33,7 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
 
   const { id } = await params;
 
-  const { error } = await supabase
+  const { error } = await getSupabase()
     .from('snapshots')
     .delete()
     .eq('id', id);
